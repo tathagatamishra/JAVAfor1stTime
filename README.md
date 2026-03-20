@@ -4,7 +4,7 @@ Learning JAVA for the first time
 
 ---
 
-<br>
+</br>
 
 ### SDKMAN is designed for:
 (Good to know but not needed)
@@ -14,13 +14,13 @@ Learning JAVA for the first time
 - WSL (Windows Subsystem for Linux) [ yes ]
 - But NOT for Git Bash (MINGW64) [ no ]
 
-<br>
+</br>
 
 - SDK comes from SDKMAN
 - SDKMAN (Software Development Kit Manager)
 - SDKMAN works best on Linux/macOS, not Git Bash (MINGW64) on Windows
 
-<br>
+</br>
 
 ## On Windows + Git Bash
 ### Setting up Ubuntu
@@ -78,13 +78,13 @@ myapp/
  ├── src/
  │   └── main/
  │       ├── java/
- │       │   └── AppnameApplication.java
+ │       │   └── MyappApplication.java
  │       └── resources/
  │           └── application.properties
  ├──
  ```
 
-<br>
+</br>
 
 ---
 ### My Workflow
@@ -98,7 +98,7 @@ myapp/
 7. write code
 8. git add → commit → push
 
-<br>
+</br>
 
 ---
 
@@ -153,17 +153,38 @@ appname (Gradle)
 ```
 ---
 
+
 ### Spring Boot common basic structure
+> Spring Boot = framework
+>> Maven / Gradle = build tools
+>>> Thats why base structure is same
+
 ```
  project-name
  ├── src
  │   └── main
  │       ├── java/com/example/demo
- │       │     └── DemoApplication.java
+ │       │     └── project-nameApplication.java
  │       └── resources
  │             └── application.properties
  ├── 
 ```
+
+---
+
+</br>
+
+### By default the server runs on port 8080
+To change the port
+```java
+project-name/src/main/resources/application.properties
+                                │
+                                └── server.port=8081
+```
+
+</br>
+
+## How building and running commands look like
 
 | Node            | Maven                 | Gradle              |
 |-----------------|-----------------------|---------------------|
@@ -208,7 +229,7 @@ gradle build
 ./gradlew clean build
 ```
 ---
-<br>
+</br>
 
 ## Run vs Build
 
@@ -216,17 +237,33 @@ gradle build
 - Maven → `mvn spring-boot:run`
 - Gradle → `./gradlew bootRun`
 
-<br>
+</br>
 
 > Production:
 - Build JAR → `mvn package` / `gradlew build`
 - Run → `java -jar app.jar`
 
-<br>
+</br>
 
 ---
 
-<br>
+> Error:
+
+- Gradle can't find Java 17 
+
+```java
+// build.gradle
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+// set proper java version, for me its 21 installed, but its set to 17, change it to 21 to fix it.
+```
+
+---
+
+</br>
 
 ## Project Structure Comparison
 
@@ -247,7 +284,7 @@ gradle build
 
 ---
 
-<br>
+</br>
 
 ## Nodejs Flow vs Spring Boot Flow
 
@@ -272,7 +309,7 @@ MainApplication.java (app starts)
 
 ---
 
-<br><br><br>
+</br></br></br>
 
 # Java Backend
 
