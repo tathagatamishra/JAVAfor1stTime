@@ -169,13 +169,22 @@ appname (Gradle)
  │             └── application.properties
  ├── 
 ```
+### src structure
+```
+src/
+└── main/                → actual app
+    ├── java/            → all Java code
+    └── resources/       → all config & assets
+```
+
+</br>
 
 ---
 
 </br>
 
 ### By default the server runs on port 8080
-To change the port
+![!](https://dummyimage.com/14/9AE630/white?text=+) &nbsp; To change the port
 ```java
 project-name/src/main/resources/application.properties
                                 │
@@ -249,7 +258,7 @@ gradle build
 
 > Error:
 
-- Gradle can't find Java 17 
+![!](https://dummyimage.com/14/FB2C36/white?text=!) &nbsp; Gradle can't find Java 17 
 
 ```java
 // build.gradle
@@ -413,3 +422,130 @@ Build Output & Deployment
 ├── Docker      → Containerize the .jar (same workflow as Node)
 └── Actuator    → Built-in health check endpoints (/actuator/health)
 ```
+
+</br>
+
+---
+
+</br>
+
+# Backend Project Structure
+
+```
+src/
+└── main/                → actual app
+    ├── java/            → all Java code
+    └── resources/       → all config & assets
+```
+
+Comparing with my nodejs project structure
+
+```
+gradleapp/
+└── src/
+    └── main/
+        ├── java/
+        │   └── com/
+        │       └── example/
+┌───────┘           └── gradleapp/
+│  ┌──────────────────────┘
+│  │
+│  ├── GradleappApplication.java      → entry point (like index.js)
+│  │
+│  ├── config/
+│  │   └── CloudinaryConfig.java      → like config/cloudinary.js
+│  │
+│  ├── controller/
+│  │   ├── AdminController.java       → like controller/adminCtrl.js
+│  │   ├── BlogController.java        → like controller/blogCtrl.js
+│  │   └── UserController.java
+│  │
+│  ├── service/                       → like controller/ in Node (business logic)
+│  │   ├── AdminService.java
+│  │   ├── BlogService.java
+│  │   └── UserService.java
+│  │
+│  ├── repository/                    → no equivalent in Node (DB query layer)
+│  │   ├── AdminRepository.java
+│  │   └── UserRepository.java
+│  │
+│  ├── model/                         → like model/ in Node
+│  │   ├── AdminModel.java            → like adminModel.js
+│  │   ├── BlogModel.java
+│  │   └── UserModel.java
+│  │
+│  ├── middleware/                    → like middleware/ in Node
+│  │   ├── AuthFilter.java            → like authMiddleware.js
+│  │   └── EmailAuthFilter.java
+│  │
+│  ├── dto/                           → no equivalent in Node
+│  │   ├── UserRequestDto.java        → shape of incoming request body
+│  │   └── UserResponseDto.java       → shape of outgoing response
+│  │
+│  └── util/                          → like util/ in Node
+│      ├── EmailUtil.java             → like sendEmail.js
+│      └── JwtUtil.java
+│   
+└── resources/
+    ├── application.properties        → like .env
+    └── application-dev.properties    → like .env.development
+```
+
+```
+src/
+└── main/
+    ├── java/com/example/gradleapp    → all .java files (code)
+    │
+    └── resources/                    → all config & static files (not code)
+        │
+        ├── application.properties    → like .env
+        ├── static/                   → CSS, JS, images (like public/ folder)
+        └── templates/                → HTML templates (like views/)
+```
+
+</br>
+
+---
+
+</br>
+
+## Basic Code
+
+![!](https://dummyimage.com/14/ffd230/white?text=!) &nbsp; Package line at the top matches the folder name
+
+```java
+// file is in controller/ folder
+package com.example.gradleapp.controller;
+
+// importing from another package
+// in nodejs const UserModel = require('../model/UserModel')
+import com.example.gradleapp.service.UserService;
+import com.example.gradleapp.model.UserModel;
+
+@RestController
+public class UserController {
+```
+
+```java
+// file is in service/ folder
+package com.example.gradleapp.service;
+
+@Service
+public class UserService {
+```
+
+```java
+// file is in model/ folder
+package com.example.gradleapp.model;
+
+public class UserModel {
+```
+
+---
+
+
+
+
+
+
+<!-- # ![!](https://img.shields.io/badge/!-ffd230) Text -->
