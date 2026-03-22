@@ -176,11 +176,11 @@ List<String> long = fruits.stream()
 
 ### Collections Comparison
 
-| JavaScript | Java | Use |
-|---|---|---|
-| `[]` Array | `List<T>` ArrayList | ordered, dynamic list |
-| `{}` Object | `Map<K,V>` HashMap | key-value pairs |
-| `new Set()` | `Set<T>` HashSet | unique values only |
+| JavaScript  | Java                | Use                   |
+|-------------|---------------------|-----------------------|
+| `[]` Array  | `List<T>` ArrayList | ordered, dynamic list |
+| `{}` Object | `Map<K,V>` HashMap  | key-value pairs       |
+| `new Set()` | `Set<T>` HashSet    | unique values only    |
 
 ---
 
@@ -409,13 +409,13 @@ public void readFile(String path) throws IOException {
 
 ### Common Java Exceptions
 
-| Java Exception | When it happens |
-|---|---|
-| `NullPointerException` | accessing a null object |
+| Java Exception                   | When it happens           |
+|----------------------------------|---------------------------|
+| `NullPointerException`           | accessing a null object   |
 | `ArrayIndexOutOfBoundsException` | array index doesn't exist |
-| `IllegalArgumentException` | wrong argument passed |
-| `RuntimeException` | general runtime error |
-| `IOException` | file/network read error |
+| `IllegalArgumentException`       | wrong argument passed     |
+| `RuntimeException`               | general runtime error     |
+| `IOException`                    | file/network read error   |
 
 ---
 
