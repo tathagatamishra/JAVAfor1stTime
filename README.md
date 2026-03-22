@@ -22,6 +22,104 @@ Learning JAVA for the first time
 
 </br>
 
+## CLI approach to install & update things
+
+| Linux/WSL          | Windows          |
+|--------------------|------------------|
+| `sudo apt install` | `winget install` |
+| `sdkman`           | `winget`         |
+
+</br>
+
+## Check Version of everything
+
+### Windows
+```
+cmdjava -version
+mvn -version
+gradle -version
+node -version
+npm -version
+```
+
+### WSL
+```
+bashjava -version
+mvn -version
+spring --version
+sdk version
+node -version
+npm -version
+```
+
+</br>
+
+## Check WHERE something is installed
+
+### Windows
+```
+cmdwhere java
+where mvn
+where node
+```
+
+### WSL
+```
+bashwhich java
+which mvn
+which spring
+which node
+```
+
+</br>
+
+
+## Install JAVA
+
+### Windows
+```
+winget install EclipseAdoptium.Temurin.21.JDK
+```
+OR
+- Go to https://adoptium.net
+- Select Temurin 21 (LTS) → Windows → x64 → .msi
+- install
+
+### WSL
+```
+sdk install java 21.0.10-tem
+sdk default java 21.0.10-tem
+```
+
+### ![!](https://dummyimage.com/14/9AE630/white?text=+) &nbsp; What is -tem ??
+tem = Temurin
+
+> Available Java Vendors for Linux 64bit
+
+|Vendor      |Dist       |
+|------------|-----------|
+|Corretto    |amzn       |
+|Dragonwell  |albba      |
+|Gluon       |gln        |
+|GraalVM     |graalce    |
+|GraalVM     |graal      |
+|Huawei      |bisheng    |
+|Java.net    |open       |
+|JetBrains   |jbr        |
+|Liberica    |librca     |
+|Liberica    |nik        |
+|Mandrel     |mandrel    |
+|Microsoft   |ms         |
+|Oracle      |oracle     |
+|SapMachine  |sapmchn    |
+|Semeru      |sem        |
+|Temurin     |tem        |
+|Tencent     |kona       |
+|Trava       |trava      |
+|Zulu        |zulu       |
+
+</br>
+
 ## On Windows + Git Bash
 ### Setting up Ubuntu
 ```bash
@@ -506,6 +604,20 @@ src/
 </br>
 
 ---
+
+</br>
+
+## Important Spring Boot Annotations
+
+| Annotation               | Purpose              |
+| ------------------------ | -------------------- |
+| `@SpringBootApplication` | main application     |
+| `@RestController`        | REST API controller  |
+| `@GetMapping`            | GET endpoint         |
+| `@PostMapping`           | POST endpoint        |
+| `@Autowired`             | dependency injection |
+| `@Service`               | business logic layer |
+| `@Repository`            | database layer       |
 
 </br>
 
