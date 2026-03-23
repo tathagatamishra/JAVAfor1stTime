@@ -129,8 +129,10 @@ String.format("Hello, my name is %s and I am %d years old", "John", 25);
 ## 3. Arrays & Lists
 
 ```js
-// JavaScript — arrays are flexible
+// JavaScript - arrays are flexible
+
 let fruits = ["apple", "banana", "mango"];
+
 fruits.push("orange");
 fruits.length;
 fruits[0];
@@ -141,24 +143,33 @@ fruits.filter(f => f.length > 5);
 ```
 
 ```java
-// Java — fixed-size array (rarely used directly)
-String[] fruits = {"apple", "banana", "mango"};
-fruits.length;   // no push, size is fixed
+// Java - fixed-size array 
+// no push, size is fixed
+// rarely used directly
 
-// Java — ArrayList (like JS array, dynamic size)
+String[] fruits = {"apple", "banana", "mango"};
+
+fruits.length;   
+
+// ----------------------------------------
+
+// Java - ArrayList 
+// like JS array, dynamic size
+
 import java.util.ArrayList;
 import java.util.List;
 
 List<String> fruits = new ArrayList<>();
+
 fruits.add("apple");
 fruits.add("banana");
-fruits.size();                        // .length in JS
-fruits.get(0);                        // fruits[0] in JS
-fruits.contains("apple");             // .includes() in JS
-fruits.remove("apple");               // .filter() equivalent
+fruits.size();                    // .length in JS
+fruits.get(0);                    // fruits[0] in JS
+fruits.contains("apple");         // .includes() in JS
+fruits.remove("apple");           // .filter() equivalent
 
 // looping
-for (String fruit : fruits) {        // like for...of in JS
+for (String fruit : fruits) {     // like for...of in JS
     System.out.println(fruit);
 }
 
@@ -183,6 +194,8 @@ List<String> long = fruits.stream()
 | `new Set()` | `Set<T>` HashSet    | unique values only    |
 
 ---
+
+</br>
 
 ## 4. Objects vs Classes
 
@@ -213,6 +226,8 @@ User user = new User();
 ```
 
 ---
+
+</br>
 
 ## 5. Functions vs Methods
 
@@ -259,6 +274,8 @@ modifier                   name     (type+name)  (type+name)
 ```
 
 ---
+
+</br>
 
 ## 6. Conditionals
 
@@ -319,6 +336,8 @@ switch (day) {
 
 ---
 
+</br>
+
 ## 7. Loops
 
 ```js
@@ -345,6 +364,8 @@ while (x > 0) { x--; }
 
 ---
 
+</br>
+
 ## 8. Null Handling
 
 ```js
@@ -370,6 +391,8 @@ name.ifPresent(n -> System.out.println(n)); // run only if not null
 ```
 
 ---
+
+</br>
 
 ## 9. Error Handling
 
@@ -418,6 +441,8 @@ public void readFile(String path) throws IOException {
 | `IOException`                    | file/network read error   |
 
 ---
+
+</br>
 
 ## 10. Classes & OOP
 
@@ -483,6 +508,8 @@ dog.speak();
 
 ---
 
+</br>
+
 ## 11. Lombok — eliminating boilerplate
 
 The biggest pain in Java is writing getters/setters for every field. **Lombok** fixes this with annotations:
@@ -532,6 +559,8 @@ public class User {
 
 ---
 
+</br>
+
 ## 12. Spring Boot Annotations
 
 | Annotation | Purpose | Node equivalent |
@@ -555,6 +584,8 @@ public class User {
 | `@Valid` | validate request body | Joi/express-validator |
 
 ---
+
+</br>
 
 ## 13. Dependency Injection
 
@@ -591,6 +622,8 @@ public class UserController {
 
 ---
 
+</br>
+
 ## 14. Reading Config (like .env)
 
 ```js
@@ -618,6 +651,8 @@ private String jwtSecret;
 ```
 
 ---
+
+</br>
 
 ## 15. HTTP Request & Response
 
@@ -647,6 +682,8 @@ public ResponseEntity<String> createUser(
 ```
 
 ---
+
+</br>
 
 ## 16. Printing / Logging
 
@@ -679,6 +716,8 @@ public class UserService {
 ```
 
 ---
+
+</br>
 
 ## 17. Async — Promises vs CompletableFuture
 
@@ -723,6 +762,8 @@ public CompletableFuture<User> getUserAsync(int id) {
 
 ---
 
+</br>
+
 ## 18. File Structure Comparison
 
 ```
@@ -741,6 +782,8 @@ node_modules/                ~/.m2/repository/ (Maven local cache)
 ```
 
 ---
+
+</br>
 
 ## 19. Quick Reference — Common Differences
 
