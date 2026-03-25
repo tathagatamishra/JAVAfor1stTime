@@ -1,8 +1,8 @@
 # Java/Spring vs JavaScript/Node
 
----
+</br>
 
-## 1. Variables & Data Types
+## 0. Variables & Data Types
 
 ### Java Primitive Types
 
@@ -14,7 +14,31 @@
 | `float`   | small decimal    | `float rate = 3.14f;`            |
 | `boolean` | true/false       | `boolean active = true;`         |
 | `char`    | single character | `char grade = 'A';`              |
-| `String`  | text object      | `String name = "John";`          |
+
+### Java Reference Types
+
+Reference types store **memory address (reference)** of an object, not the actual value.
+
+| Type           | What it represents           | Example                                  |
+|----------------|------------------------------|------------------------------------------|
+| `String`       | text (object, not primitive) | `String name = "John";`                  |
+| `Array`        | fixed-size collection        | `int[] nums = {1, 2, 3};`                |
+| `Class Object` | user-defined objects         | `User user = new User();`                |
+| `ArrayList`    | dynamic array (List)         | `List<String> list = new ArrayList<>();` |
+| `Map`          | key-value structure          | `Map<String, Integer> map = new HashMap<>();` |
+| `Set`          | unique values collection     | `Set<Integer> set = new HashSet<>();`    |
+| `Wrapper`      | object version of primitives | `Integer num = 10;`                      |
+
+---
+
+![!](https://dummyimage.com/14/ffd230/white?text=!) &nbsp; Primitive vs Reference
+
+- Primitive types store actual values
+- Reference types store memory address (reference)
+- Reference types can be `null`, primitives cannot
+- Reference types are created using `new` (mostly)
+
+---
 
 ### Declaring Variables
 
@@ -22,7 +46,21 @@
 
 ![!](https://dummyimage.com/14/ffd230/white?text=!) &nbsp; Java added `var` so we don't always have to declare the type, Java figures it out
 
-</br>
+---
+
+### Java vs JavaScript (Types)
+
+| JavaScript       | Java Equivalent        |
+|------------------|------------------------|
+| `string`         | `String`               |
+| `number`         | `int`, `double`        |
+| `boolean`        | `boolean`              |
+| `object`         | Class / Map / List     |
+| `array`          | Array / List           |
+| `null`           | `null`                 |
+| `undefined`      |  not present           |
+
+---
 
 ```js
 // JavaScript - no types needed
@@ -69,6 +107,70 @@ var isActive = true;
 
 </br>
 
+## 1. Printing / Logging
+
+| Method                 | New Line | Use Case                 |
+|------------------------|----------|--------------------------|
+| `System.out.println()` | Yes      | General printing         |
+| `System.out.print()`   | No       | Print on same line       |
+| `System.out.printf()`  | No       | Formatted output         |
+| `System.err.println()` | Yes      | Error messages           |
+| `String.format()`      | No       | Build a formatted string |
+
+```js
+// JavaScript
+console.log("hello");
+console.log("Name:", name);
+console.error("error occurred");
+```
+
+```java
+// Java basic print
+System.out.println("hello");
+System.out.println("Name: " + name);
+System.err.println("error occurred");
+
+// Spring Boot - use Logger (recommended)
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class UserService {
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
+
+    public void createUser() {
+        log.info("Creating user...");       // like console.log
+        log.error("Something went wrong");  // like console.error
+        log.debug("Debug info");            // like console.debug
+    }
+}
+```
+
+</br>
+
+### Template Literal Placeholders in `String.format()`
+
+| Placeholder | Used For       |
+|-------------|----------------|
+| `%s`        | String         |
+| `%d`        | int / long     |
+| `%f`        | float / double |
+| `%b`        | boolean        |
+| `%c`        | char           |
+
+```js
+// Javascript
+console.log(`Hello ${name}`)
+```
+
+```java
+// Java
+String.format("Hello, my name is %s and I am %d years old", "John", 25);
+```
+
+---
+
+</br>
+
 ## 2. Strings
 
 ```js
@@ -97,30 +199,6 @@ boolean equals = name.equals("John");       // use .equals() NOT ==
 
 - In Java NEVER compare Strings with `==`. Always use `.equals()`.
 - `==` checks if they are the same `object` in memory, not the same `text`.
-
----
-
-### Template Literals
-
-```js
-// Javascript
-`Hello ${name}`
-```
-
-```java
-// Java
-String.format("Hello, my name is %s and I am %d years old", "John", 25);
-```
-
-### Common Placeholders in `String.format()`
-
-| Placeholder | Used For       |
-|-------------|----------------|
-| `%s`        | String         |
-| `%d`        | int / long     |
-| `%f`        | float / double |
-| `%b`        | boolean        |
-| `%c`        | char           |
 
 ---
 
@@ -173,7 +251,9 @@ for (String fruit : fruits) {     // like for...of in JS
     System.out.println(fruit);
 }
 
-// streams — like .map() .filter() in JS
+// ----------------------------------------
+
+// streams - like .map() .filter() in JS
 import java.util.stream.Collectors;
 
 List<String> upper = fruits.stream()
@@ -200,7 +280,7 @@ List<String> long = fruits.stream()
 ## 4. Objects vs Classes
 
 ```js
-// JavaScript — plain object
+// JavaScript - plain object
 const user = {
     name: "John",
     age: 25,
@@ -211,7 +291,7 @@ const user = {
 ```
 
 ```java
-// Java — everything is a class
+// Java - everything is a class
 public class User {
     private String name;
     private int age;
@@ -232,7 +312,7 @@ User user = new User();
 ## 5. Functions vs Methods
 
 ```js
-// JavaScript — functions exist freely
+// JavaScript - functions exist freely
 function createUser(name, age) {
     return { name, age };
 }
@@ -241,10 +321,11 @@ const createUser = (name, age) => ({ name, age });
 ```
 
 ```java
-// Java — functions must live inside a class (called methods)
+// Java - functions must live inside a class (called methods)
 public class UserService {
 
     // accessModifier returnType methodName(paramType paramName)
+    // public User createUser, User is datatype!!
     public User createUser(String name, int age) {
         User user = new User();
         user.setName(name);
@@ -261,23 +342,43 @@ public class UserService {
     private boolean isValid(String name) {
         return name != null && !name.isEmpty();
     }
+
+    // main function
+    public static void main(String[] args) {
+        deleteUser(123);
+    }
 }
 ```
 
-### Method Anatomy
+| Code                   | Meaning             |
+| ---------------------- | ------------------- |
+| `public int method()`  | returns integer     |
+| `public User method()` | returns User object |
+| `public void method()` | returns nothing     |
+| `public method()`      | invalid             |
 
-```java
-public    UserSchema    createUser  (String name,  int age)
-  ↑           ↑             ↑            ↑           ↑
-access     return type    method      param1       param2
-modifier                   name     (type+name)  (type+name)
-```
+### ![!](https://dummyimage.com/14/ffd230/white?text=!) &nbsp; Important Facts
+
+- In Java functions are called methods
+- Java functions must be created inside a `class`
+- We can't call `Java` function (method) like `JavaScript`
+- `Java` methods have to be called inside of `main()` method
+- `main()` method automatically called by `JVM` (Java Virtual Machine)
+- `main()` method to work it need `String[] args` as argument
+- void = returns nothing
+- Use void before method name if it returns nothing
+- public + static + void + main + (String[ ] args)
+- `Always` add `Data Type` Before a Method if it `returning` the `datatype`
+- accessModifier + returnType + methodName(...)
+- If even one piece is missing or different, it won't work
 
 ---
 
 </br>
 
 ## 6. Conditionals
+
+### if-else
 
 ```js
 // JavaScript
@@ -294,7 +395,7 @@ const label = age >= 18 ? "adult" : "minor";
 ```
 
 ```java
-// Java — identical syntax!
+// Java - identical syntax!
 if (age >= 18) {
     System.out.println("adult");
 } else if (age >= 13) {
@@ -303,11 +404,11 @@ if (age >= 18) {
     System.out.println("child");
 }
 
-// ternary — same as JS
+// ternary - same as JS
 String label = age >= 18 ? "adult" : "minor";
 ```
 
-### Switch
+### switch
 
 ```js
 // JavaScript
@@ -319,14 +420,14 @@ switch (day) {
 ```
 
 ```java
-// Java — same syntax
+// Java - same syntax
 switch (day) {
     case "Mon": System.out.println("Monday"); break;
     case "Tue": System.out.println("Tuesday"); break;
     default: System.out.println("other");
 }
 
-// Java modern switch (Java 14+) — cleaner
+// Java modern switch (Java 14+) - cleaner
 switch (day) {
     case "Mon" -> System.out.println("Monday");
     case "Tue" -> System.out.println("Tuesday");
@@ -381,7 +482,7 @@ let name2 = user?.name ?? "Guest"; // nullish coalescing
 String user = null;
 if (user != null) { ... }
 
-// Optional (Java 8+) — like optional chaining
+// Optional (Java 8+) - like optional chaining
 import java.util.Optional;
 
 Optional<String> name = Optional.ofNullable(user);
@@ -411,7 +512,7 @@ throw new Error("Something went wrong");
 ```
 
 ```java
-// Java — same structure
+// Java - same structure
 try {
     int result = 10 / 0;
 } catch (ArithmeticException e) {
@@ -493,7 +594,7 @@ public class Animal {
 public class Dog extends Animal {
 
     public Dog(String name) {
-        super(name);              // call parent constructor — like super() in JS
+        super(name);              // call parent constructor - like super() in JS
     }
 
     @Override                    // tells Java this overrides the parent method
@@ -506,16 +607,32 @@ Dog dog = new Dog("Rex");
 dog.speak();
 ```
 
+### ![!](https://dummyimage.com/14/ffd230/white?text=!) &nbsp; public class name should match with filename
+
+- In Java, the `filename` must match the `public class name` exactly, including capitalization.
+- This filename & public class name is `Case-Sensitive`.
+- Java uses the filename to locate the class during compilation.
+- If they don't match, the compiler simply can't find it.
+- This only apply to public class.
+- Example:
+
+```java
+fileName.java  →  class FileName   ( mismatch = error ) 
+FileName.java  →  class fileName   ( mismatch = error ) 
+fileName.java  →  class fileName   ( match    = works )  // not recommended
+FileName.java  →  class FileName   ( match    = works )  // recommended
+```
+
 ---
 
 </br>
 
-## 11. Lombok — eliminating boilerplate
+## 11. Lombok - eliminating boilerplate
 
 The biggest pain in Java is writing getters/setters for every field. **Lombok** fixes this with annotations:
 
 ```java
-// Without Lombok — lots of boilerplate
+// Without Lombok - lots of boilerplate
 public class User {
     private int id;
     private String name;
@@ -530,7 +647,7 @@ public class User {
     // ... etc
 }
 
-// With Lombok — clean!
+// With Lombok - clean!
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -543,19 +660,19 @@ public class User {
     private String name;
     private int age;
 }
-// that's it — same result as above!
+// that's it - same result as above!
 ```
 
 ### Lombok Annotations
 
-| Annotation | What it generates |
-|---|---|
-| `@Data` | all getters + setters + toString + equals |
-| `@Getter` | only getters |
-| `@Setter` | only setters |
-| `@NoArgsConstructor` | empty constructor |
-| `@AllArgsConstructor` | constructor with all fields |
-| `@Builder` | builder pattern for creating objects |
+| Annotation            | What it generates                         |
+|-----------------------|-------------------------------------------|
+| `@Data`               | all getters + setters + toString + equals |
+| `@Getter`             | only getters                              |
+| `@Setter`             | only setters                              |
+| `@NoArgsConstructor`  | empty constructor                         |
+| `@AllArgsConstructor` | constructor with all fields               |
+| `@Builder`            | builder pattern for creating objects      |
 
 ---
 
@@ -563,25 +680,25 @@ public class User {
 
 ## 12. Spring Boot Annotations
 
-| Annotation | Purpose | Node equivalent |
-|---|---|---|
-| `@SpringBootApplication` | marks main entry point | — |
-| `@RestController` | class handles HTTP routes + returns JSON | `express.Router()` |
-| `@Service` | class contains business logic | plain JS class/module |
-| `@Repository` | class handles DB queries | mongoose model methods |
-| `@Component` | generic Spring-managed class | — |
-| `@GetMapping("/path")` | HTTP GET route | `router.get('/path')` |
-| `@PostMapping("/path")` | HTTP POST route | `router.post('/path')` |
-| `@PutMapping("/path")` | HTTP PUT route | `router.put('/path')` |
-| `@DeleteMapping("/path")` | HTTP DELETE route | `router.delete('/path')` |
-| `@RequestBody` | read request body | `req.body` |
-| `@PathVariable` | read URL param `{id}` | `req.params.id` |
-| `@RequestParam` | read query string `?name=x` | `req.query.name` |
-| `@RequestHeader` | read request header | `req.headers` |
-| `@Autowired` | inject a dependency | `require()` |
-| `@Value` | read from application.properties | `process.env.KEY` |
-| `@CrossOrigin` | enable CORS | `cors()` middleware |
-| `@Valid` | validate request body | Joi/express-validator |
+| Annotation                | Purpose                                  | Node equivalent          |
+|---------------------------|------------------------------------------|--------------------------|
+| `@SpringBootApplication`  | marks main entry point                   | -                        |
+| `@RestController`         | class handles HTTP routes + returns JSON | `express.Router()`       |
+| `@Service`                | class contains business logic            | plain JS class/module    |
+| `@Repository`             | class handles DB queries                 | mongoose model methods   |
+| `@Component`              | generic Spring-managed class             | -                        |
+| `@GetMapping("/path")`    | HTTP GET route                           | `router.get('/path')`    |
+| `@PostMapping("/path")`   | HTTP POST route                          | `router.post('/path')`   |
+| `@PutMapping("/path")`    | HTTP PUT route                           | `router.put('/path')`    |
+| `@DeleteMapping("/path")` | HTTP DELETE route                        | `router.delete('/path')` |
+| `@RequestBody`            | read request body                        | `req.body`               |
+| `@PathVariable`           | read URL param `{id}`                    | `req.params.id`          |
+| `@RequestParam`           | read query string `?name=x`              | `req.query.name`         |
+| `@RequestHeader`          | read request header                      | `req.headers`            |
+| `@Autowired`              | inject a dependency                      | `require()`              |
+| `@Value`                  | read from application.properties         | `process.env.KEY`        |
+| `@CrossOrigin`            | enable CORS                              | `cors()` middleware      |
+| `@Valid`                  | validate request body                    | Joi/express-validator    |
 
 ---
 
@@ -592,7 +709,7 @@ public class User {
 This is Spring's biggest concept. Instead of `require()`, Spring creates and injects objects for you:
 
 ```js
-// Node — manual import
+// Node - manual import
 const userService = require('./userService');
 
 const getUser = (req, res) => {
@@ -602,7 +719,7 @@ const getUser = (req, res) => {
 ```
 
 ```java
-// Java Spring — Spring injects it automatically
+// Java Spring - Spring injects it automatically
 @RestController
 public class UserController {
 
@@ -627,7 +744,7 @@ public class UserController {
 ## 14. Reading Config (like .env)
 
 ```js
-// Node — .env
+// Node - .env
 PORT=3000
 DB_URL=mongodb://localhost:27017/mydb
 
@@ -637,7 +754,7 @@ const dbUrl = process.env.DB_URL;
 ```
 
 ```java
-// Java — application.properties
+// Java - application.properties
 server.port=8080
 spring.data.mongodb.uri=mongodb://localhost:27017/mydb
 jwt.secret=mysecretkey
@@ -685,44 +802,10 @@ public ResponseEntity<String> createUser(
 
 </br>
 
-## 16. Printing / Logging
+## 16. Async - Promises vs CompletableFuture
 
 ```js
-// JavaScript
-console.log("hello");
-console.log("Name:", name);
-console.error("error occurred");
-```
-
-```java
-// Java basic print
-System.out.println("hello");
-System.out.println("Name: " + name);
-System.err.println("error occurred");
-
-// Spring Boot — use Logger (recommended)
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-public class UserService {
-    private static final Logger log = LoggerFactory.getLogger(UserService.class);
-
-    public void createUser() {
-        log.info("Creating user...");       // like console.log
-        log.error("Something went wrong");  // like console.error
-        log.debug("Debug info");            // like console.debug
-    }
-}
-```
-
----
-
-</br>
-
-## 17. Async — Promises vs CompletableFuture
-
-```js
-// JavaScript — async/await
+// JavaScript - async/await
 const getUser = async (id) => {
     const user = await UserModel.findById(id);
     return user;
@@ -739,7 +822,7 @@ const createUser = async (data) => {
 ```
 
 ```java
-// Java Spring — mostly synchronous (Spring handles threading)
+// Java Spring - mostly synchronous (Spring handles threading)
 // With Spring Data, DB calls look synchronous but Spring manages threads
 
 public User getUser(int id) {
@@ -757,53 +840,32 @@ public CompletableFuture<User> getUserAsync(int id) {
 }
 ```
 
-> In Spring Boot you rarely need async — Spring manages threads automatically.
+> In Spring Boot you rarely need async - Spring manages threads automatically.
 > Your controller/service code looks synchronous even though it's not.
 
 ---
 
 </br>
 
-## 18. File Structure Comparison
+## 17. Quick Reference - Common Differences
 
-```
-Node.js project              Spring Boot project
-─────────────────            ──────────────────────────────────────────
-index.js                     MainApplication.java
-config/cloudinary.js         config/CloudinaryConfig.java
-controller/userCtrl.js       service/UserService.java
-router/route.js              controller/UserController.java
-middleware/authMware.js      middleware/AuthFilter.java
-model/userModel.js           model/User.java + repository/UserRepository.java
-util/sendEmail.js            util/EmailUtil.java
-.env                         resources/application.properties
-package.json                 pom.xml (Maven) or build.gradle (Gradle)
-node_modules/                ~/.m2/repository/ (Maven local cache)
-```
-
----
-
-</br>
-
-## 19. Quick Reference — Common Differences
-
-| JavaScript | Java |
-|---|---|
-| `console.log()` | `System.out.println()` |
-| `===` | `.equals()` for objects, `==` for primitives |
-| `null` / `undefined` | `null` / `void` |
-| `typeof x === 'string'` | `x instanceof String` |
-| `array.length` | `list.size()` |
-| `array.push(x)` | `list.add(x)` |
-| `array[0]` | `list.get(0)` |
-| `array.includes(x)` | `list.contains(x)` |
-| `obj[key] = val` | `map.put(key, val)` |
-| `obj[key]` | `map.get(key)` |
-| `delete obj[key]` | `map.remove(key)` |
-| `Object.keys(obj)` | `map.keySet()` |
-| `Object.values(obj)` | `map.values()` |
-| `JSON.stringify(obj)` | Jackson does this automatically |
-| `JSON.parse(str)` | Jackson does this automatically |
-| `//` comment | `//` comment (same!) |
-| `/* */` comment | `/* */` comment (same!) |
-| semicolons optional | semicolons required `;` |
+| JavaScript              | Java                                         |
+|-------------------------|----------------------------------------------|
+| `console.log()`         | `System.out.println()`                       |
+| `===`                   | `.equals()` for objects, `==` for primitives |
+| `null` / `undefined`    | `null` / `void`                              |
+| `typeof x === 'string'` | `x instanceof String`                        |
+| `array.length`          | `list.size()`                                |
+| `array.push(x)`         | `list.add(x)`                                |
+| `array[0]`              | `list.get(0)`                                |
+| `array.includes(x)`     | `list.contains(x)`                           |
+| `obj[key] = val`        | `map.put(key, val)`                          |
+| `obj[key]`              | `map.get(key)`                               |
+| `delete obj[key]`       | `map.remove(key)`                            |
+| `Object.keys(obj)`      | `map.keySet()`                               |
+| `Object.values(obj)`    | `map.values()`                               |
+| `JSON.stringify(obj)`   | Jackson does this automatically              |
+| `JSON.parse(str)`       | Jackson does this automatically              |
+| `//` comment            | `//` comment (same!)                         |
+| `/* */` comment         | `/* */` comment (same!)                      |
+| semicolons optional     | semicolons required `;`                      |
