@@ -639,25 +639,96 @@ public class UserController {
 ```
 
 ```java
-// file is in service/ folder
-package com.example.gradleapp.service;
+// file is in MyProjects/helloworld/src/main/java/com.example.sayhello.controller/HelloController.java
+package com.example.sayhello.controller;
 
-@Service
-public class UserService {
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class HelloController {
+    @GetMapping("/")
+    public String hello() {
+        return "Hello, World!";
+    }
+}
 ```
 
 ```java
-// file is in model/ folder
-package com.example.gradleapp.model;
+org.springframework.web.bind.annotation.GetMapping;
+ │       │           │    │      │          │
+ │       │           │    │      │          └── the actual class we need
+ │       │           │    │      └── sub-package (annotations live here)
+ │       │           │    └── sub-package
+ │       │           └── module (like a sub-library)
+ │       └── the framework name
+ └── "org" = open source organization (like a domain name reversed)
+```
 
-public class UserModel {
+ Or use * to import all
+
+```java
+ import org.springframework.web.bind.annotation.*;
 ```
 
 ---
 
+</br>
 
+## Packages
 
+> <https://mvnrepository.com>
 
+### The top-level namespaces commonly used
 
+```java
+// Java's own built-in standard library (like Node's built-ins: fs, path, http)
+import java.util.List;
+import java.time.LocalDate;
+import java.io.File;
+
+// Spring Framework (the main web framework, like express)
+import org.springframework.web.bind.annotation.*;
+import org.springframework.data.bind.annotation.*;
+import org.springframework.security.bind.annotation.*;
+
+// My own code (like requiring my own files in js)
+import com.example.myapp.model.Todo;
+import com.example.myapp.service.TodoService;
+
+// Third party libraries (like other npm packages)
+import com.fasterxml.jackson...   // JSON handling (like JSON.parse)
+import io.jsonwebtoken...         // JWT (like jsonwebtoken on npm)
+import org.hibernate...           // database ORM (like sequelize)
+```
+
+---
+
+### What is this com.example thing in Java ?
+
+- The `com.example` part is just a placeholder/convention
+- It has no special meaning in Java itself.
+- It's based on reverse domain name convention.
+- We can change it to anything when running `spring init`
+
+```bash
+# my custom domain
+spring init --group-id=com.myexample --dependencies=web --build=maven myapp
+
+# OR
+
+# no domain
+spring init --group-id=myexample --dependencies=web --build=maven myapp
+```
+
+```java
+// my custom domain
+package com.myexample.todo.controller;
+package com.myexample.todo.model;
+
+// if no domain
+package myexample.todo.service;
+```
+
+---
 
 <!-- # ![!](https://img.shields.io/badge/!-ffd230) Text -->
