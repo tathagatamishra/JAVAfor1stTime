@@ -343,33 +343,38 @@ public class UserService {
         return name != null && !name.isEmpty();
     }
 
-    // main function
+    // main method - entry point, just starts the app
     public static void main(String[] args) {
-        deleteUser(123);
+        UserService service = new UserService(); // create object first
+        service.deleteUser(123); // then call method on object
+        // GTA-VI will launch before I call a Java Function
     }
 }
 ```
 
-| Code                   | Meaning             |
-| ---------------------- | ------------------- |
-| `public int method()`  | returns integer     |
-| `public User method()` | returns User object |
-| `public void method()` | returns nothing     |
-| `public method()`      | invalid             |
+| Code                   | Meaning                    |
+| ---------------------- | -------------------------- |
+| `public int method()`  | returns integer            |
+| `public User method()` | returns User object        |
+| `public void method()` | returns nothing            |
+| `public method()`      | invalid                    |
+| `public static ...`    | callable on class directly |
+| `static`               | no need to create an object to call this |
 
 ### ![!](https://dummyimage.com/14/ffd230/white?text=!) &nbsp; Important Facts
 
-- In Java functions are called methods
-- Java functions must be created inside a `class`
-- We can't call `Java` function (method) like `JavaScript`
-- `Java` methods have to be called inside of `main()` method
-- `main()` method automatically called by `JVM` (Java Virtual Machine)
-- `main()` method to work it need `String[] args` as argument
-- void = returns nothing
-- Use void before method name if it returns nothing
-- public + static + void + main + (String[ ] args)
-- `Always` add `Data Type` Before a Method if it `returning` the `datatype`
-- accessModifier + returnType + methodName(...)
+- In Java, functions are called **methods**
+- Java methods must be created inside a `class` - no free-floating functions like JS
+- Java methods can't be called like JS functions - need an object first (unless `static`)
+- `main()` is the **entry point** - JVM calls it automatically when the app starts
+- In simple Java programs, `main()` drives everything
+- In frameworks like Spring Boot, `main()` just **starts the engine** - Spring then calls methods automatically when HTTP requests come in
+- Methods can call other methods freely - not limited to being called only from `main()`
+- `String[] args` in `main()` holds command line arguments - always required in the signature but mostly ignored in simple apps
+- `void` = method returns nothing
+- Always declare a **return type** before method name - if it returns nothing use `void`, otherwise use the data type
+- `public + static + void + main + (String[] args)` - this exact signature is mandatory for the entry point
+- Formula: `accessModifier + returnType + methodName(...)`
 - If even one piece is missing or different, it won't work
 
 ---
