@@ -3,7 +3,7 @@ package com.example.lifespan.model;
 public class LifespanRequest {
 
     // declaring private variables
-    private String dateOfBirth; // format: "YYYY-MM-DD"
+    private String dateOfBirth; // "YYYY-MM-DD"
     private int expectedYears;
 
     // function that return dateOfBirth variable

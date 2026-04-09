@@ -53,12 +53,12 @@ public class LifespanService {
     }
 
     private String getFunFact(long daysSpent) {
-        if (daysSpent < 3650)  return "You're just getting started! 🌱";
-        if (daysSpent < 7300)  return "You're a teenager of days! 🎒";
-        if (daysSpent < 10950) return "You're hitting your stride! 🚀";
-        if (daysSpent < 14600) return "You're in your prime! 💪";
-        if (daysSpent < 18250) return "Halfway through a grand adventure! 🌍";
-        if (daysSpent < 21900) return "A seasoned explorer of life! 🧭";
-        return "A true legend walking among us! 🏆";
+        if (daysSpent < 3650)  return "Hey kid go home, nothing to see here!";
+        if (daysSpent < 7300)  return "You're a teenager of days!";
+        if (daysSpent < 10950) return "You're hitting your stride!";
+        if (daysSpent < 14600) return "You've aura bro!";
+        if (daysSpent < 18250) return "Unk!";
+        if (daysSpent < 21900) return "Rip Bozo";
+        return "You are a GigaChad!";
     }
 }

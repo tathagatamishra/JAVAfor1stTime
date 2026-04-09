@@ -5,11 +5,10 @@ public class DataType {
 
         // range is between -128 to 127
         byte age = 25;
-        
+
         // print output
         System.out.println(age);
     }
-
 
     // 2. Short datatype
     public static void printShort() {
@@ -53,7 +52,7 @@ public class DataType {
 
     // 7. Char datatype
     public static void printChar() {
-        
+
         char keyPressed = 'W';
 
         System.out.println(keyPressed);
@@ -67,14 +66,29 @@ public class DataType {
         System.out.println(isRetarded);
     }
 
+    // 9. String datatype
+    public static void printString() {
+
+        String name = "Java";
+
+        System.out.println(name);
+    }
+
+    // 10. Arrays datatype
+    public static void printArray() {
+
+        int[] password = {2, 4, 6};
+
+        System.out.println(password[2]);
+    }
 
     // the main function
     public static void main(String[] args) {
-        
+
         // creation a new object
         DataType myByte = new DataType();
         // because printByte is not static, I had to create an object
-        // calling 
+        // calling
         myByte.printByte();
 
         // printShort is static, so object needed
@@ -92,5 +106,9 @@ public class DataType {
         DataType.printChar();
 
         DataType.printBoolean();
+
+        DataType.printString();
+
+        DataType.printArray();
     }
 }
