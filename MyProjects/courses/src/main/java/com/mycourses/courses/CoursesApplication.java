@@ -18,13 +18,15 @@ public class CoursesApplication implements CommandLineRunner
 	// no need to use new, because I created bean of PaymentService class
 	// bean is just an object
 	// @Autowired
-	private final PaymentService payment;
+	// private final PaymentService payment;
+	private final PaymentInterface payment;
 
 	// constructor dependency injection
 	// or I can just use @Autowired 
 	// and I don't even need to create this constructor
 	// but @Autowired is shit, it wont let use final
-	public CoursesApplication(PaymentService payment) {
+	// public CoursesApplication(PaymentService payment) {
+	public CoursesApplication(PaymentInterface payment) {
 		this.payment = payment;
 	}
 
